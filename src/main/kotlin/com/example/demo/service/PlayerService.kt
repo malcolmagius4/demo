@@ -1,19 +1,17 @@
 package com.example.demo.service
 
 import com.example.demo.common.model.Player
+import com.example.demo.infra.repository.PlayerRepository
 import org.springframework.stereotype.Service
 
 @Service
-class PlayerService {
+class PlayerService(val playerRepository: PlayerRepository) {
 
-    fun createUser(): Player {
+    fun createPlayer(name: String, surname: String, username: String): Player {
 
+        val newPlayer = Player(name = name, surname = surname, username = username)
 
-
-
-        val newPlayer = Player()
-
-        return newPlayer
+        return playerRepository.save(newPlayer)
     }
 
 }

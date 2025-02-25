@@ -1,4 +1,9 @@
 package com.example.demo.common.dto
 
-class RegistrationRequestDto {
-}
+import jakarta.validation.constraints.NotEmpty
+
+data class RegistrationRequestDto(
+    @NotEmpty val name: String,
+    @NotEmpty val surname: String,
+    @NotEmpty val username: String
+)

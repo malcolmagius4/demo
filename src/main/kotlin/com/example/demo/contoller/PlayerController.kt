@@ -17,9 +17,12 @@ class PlayerController(val playerService: PlayerService) {
     @PostMapping(value = ["/register"], produces = ["application/json"])
     fun register(@Valid requestDto: RegistrationRequestDto): ResponseEntity<RegistrationResponseDto> {
 
-        val player: Player = playerService.createUser()
+        val newPlayer: Player =
+            playerService.createPlayer(name = requestDto.name, surname = requestDto.surname, username = requestDto.username)
 
-        return ResponseEntity(RegistrationResponseDto(), HttpStatus.CREATED)
+        return ResponseEntity(RegistrationResponseDto(playerUuid = newPlayer.playerUuid, name = newPlayer.name,
+            surname = newPlayer.surname, username = newPlayer.username, walletBalance = newPlayer.walletBalance),
+            HttpStatus.CREATED)
     }
 
     @GetMapping(value = ["/wallet"], produces = ["application/json"])
