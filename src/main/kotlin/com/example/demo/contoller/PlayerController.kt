@@ -9,13 +9,16 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RestController(value = "/v1/player")
+@RestController
+@RequestMapping("/v1/player")
 class PlayerController(val playerService: PlayerService) {
 
     @PostMapping(value = ["/register"], produces = ["application/json"])
-    fun register(@Valid requestDto: RegistrationRequestDto): ResponseEntity<RegistrationResponseDto> {
+    fun register(@RequestBody @Valid requestDto: RegistrationRequestDto): ResponseEntity<RegistrationResponseDto> {
 
         val newPlayer: Player =
             playerService.createPlayer(name = requestDto.name, surname = requestDto.surname, username = requestDto.username)
