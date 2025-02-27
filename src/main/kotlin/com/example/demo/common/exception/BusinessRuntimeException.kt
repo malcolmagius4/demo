@@ -1,5 +1,5 @@
 package com.example.demo.common.exception
 
-import com.example.demo.common.enum.ErrorType
+import com.example.demo.common.enum.ErrorCode
 
-class BusinessRuntimeException(val errorType: ErrorType, val httpStatus: Int) : RuntimeException()
+class BusinessRuntimeException(val errorType: ErrorCode, val httpStatus: Int) : RuntimeException()

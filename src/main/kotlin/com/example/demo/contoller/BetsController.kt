@@ -2,24 +2,22 @@ package com.example.demo.contoller
 
 import com.example.demo.common.dto.BetDto
 import com.example.demo.common.dto.GetBetsResponseDto
+import com.example.demo.common.dto.PlaceBetRequestDto
 import com.example.demo.common.model.Bet
 import com.example.demo.service.BetsService
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.UUID
 
 @RestController
 @RequestMapping("/v1/bets")
 class BetsController(val betsService: BetsService) {
 
-    @PostMapping(value = ["/place-bet"], produces = ["application/json"])
-    fun placeBet() {
-
-    }
+//    @PostMapping(value = ["/place-bet"], produces = ["application/json"])
+//    fun placeBet(@Valid @RequestBody requestDto: PlaceBetRequestDto): ResponseEntity<BetDto> {
+//
+//    }
 
     @GetMapping(value = ["/{playerUuid}"], produces = ["application/json"])
     fun getBets(@PathVariable(value="playerUuid") playerUuid: UUID) : ResponseEntity<GetBetsResponseDto> {

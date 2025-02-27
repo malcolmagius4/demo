@@ -26,12 +26,9 @@ data class Bet(
 
     @Column(nullable = false)
     val actualValue: Int,
-
-    @Column(nullable = false)
-    val timestamp: Instant
 ) {
     fun toDto() : BetDto {
         return BetDto(stakeAmount = stakeAmount, winAmount = winAmount, betValue = betValue,
-            actualValue = actualValue, timestamp = timestamp)
+            actualValue = actualValue)
     }
 }

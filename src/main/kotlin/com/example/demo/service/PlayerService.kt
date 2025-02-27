@@ -1,6 +1,6 @@
 package com.example.demo.service
 
-import com.example.demo.common.enum.ErrorType
+import com.example.demo.common.enum.ErrorCode
 import com.example.demo.common.exception.BusinessRuntimeException
 import com.example.demo.common.model.Player
 import com.example.demo.common.model.Transaction
@@ -16,7 +16,7 @@ class PlayerService(val playerRepository: PlayerRepository) {
     fun createPlayer(name: String, surname: String, username: String): Player {
 
         if (nonNull(playerRepository.findByUsername(username))) {
-            throw BusinessRuntimeException(ErrorType.USERNAME_TAKEN, HttpStatus.BAD_REQUEST.value())
+            throw BusinessRuntimeException(ErrorCode.USERNAME_TAKEN, HttpStatus.BAD_REQUEST.value())
         }
 
         val newPlayer = Player(name = name, surname = surname, username = username)
@@ -38,7 +38,7 @@ class PlayerService(val playerRepository: PlayerRepository) {
 
     fun getPlayer(playerUuid: UUID): Player {
         return playerRepository.findByPlayerUuid(playerUuid)
-            ?: throw BusinessRuntimeException(ErrorType.PLAYER_UUID_NOT_FOUND, HttpStatus.NOT_FOUND.value())
+            ?: throw BusinessRuntimeException(ErrorCode.PLAYER_UUID_NOT_FOUND, HttpStatus.NOT_FOUND.value())
     }
 
 }

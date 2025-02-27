@@ -22,11 +22,8 @@ data class Transaction(
     @ManyToOne
     @JoinColumn(name = "player_id", nullable = false)
     val player: Player,
-
-    @Column(nullable = false)
-    val timestamp: Instant
 ) {
     fun toDto() : TransactionDto {
-        return TransactionDto(amount = amount, type = type, timestamp = timestamp)
+        return TransactionDto(amount = amount, type = type)
     }
 }
