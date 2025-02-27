@@ -29,7 +29,7 @@ class PlayerController(val playerService: PlayerService) {
     }
 
     @GetMapping(value = ["/wallet"], produces = ["application/json"])
-    fun getWallet() {
+    fun getWalletDetails() {
 
     }
 
