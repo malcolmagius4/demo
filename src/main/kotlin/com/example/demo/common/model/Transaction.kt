@@ -1,5 +1,6 @@
 package com.example.demo.common.model
 
+import com.example.demo.common.dto.TransactionDto
 import com.example.demo.common.enum.TransactionType
 import jakarta.persistence.*
 import java.time.Instant
@@ -24,4 +25,8 @@ data class Transaction(
 
     @Column(nullable = false)
     val timestamp: Instant
-)
+) {
+    fun toDto() : TransactionDto {
+        return TransactionDto(amount = amount, type = type, timestamp = timestamp)
+    }
+}

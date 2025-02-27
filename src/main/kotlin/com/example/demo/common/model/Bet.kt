@@ -1,5 +1,6 @@
 package com.example.demo.common.model
 
+import com.example.demo.common.dto.BetDto
 import jakarta.persistence.*
 import java.time.Instant
 
@@ -24,5 +25,13 @@ data class Bet(
     val betValue: Int,
 
     @Column(nullable = false)
+    val actualValue: Int,
+
+    @Column(nullable = false)
     val timestamp: Instant
-)
+) {
+    fun toDto() : BetDto {
+        return BetDto(stakeAmount = stakeAmount, winAmount = winAmount, betValue = betValue,
+            actualValue = actualValue, timestamp = timestamp)
+    }
+}
