@@ -1,11 +1,6 @@
 package com.example.demo.common.model
 
-import jakarta.persistence.Entity
-import jakarta.persistence.Table
-import jakarta.persistence.Id
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Column
+import jakarta.persistence.*
 import java.util.UUID
 
 @Entity
@@ -29,5 +24,11 @@ data class Player(
     val username: String,
 
     @Column(nullable = false)
-    val walletBalance: Int = 1000
+    val walletBalance: Int = 1000,
+
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    val transactions: Set<Transaction> = emptySet(),
+
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    val bets: Set<Bet> = emptySet()
 )
