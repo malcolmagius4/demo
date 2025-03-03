@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "8364d4a5-0ef3-403b-835d-db8043fe0a09",
+		"name": "Odds-based Game",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16548592"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Malcolm\",\n    \"surname\": \"Agius\",\n    \"username\": \"malcolmagius\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/player/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"player",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Wallet Details (playerUuid in path)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/v1/player/80e3a10e-aff6-4a26-b25e-b26886f9e77f/wallet-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"player",
+						"80e3a10e-aff6-4a26-b25e-b26886f9e77f",
+						"wallet-details"
+					]
+				},
+				"description": "Add the playerUuid as a path variable"
+			},
+			"response": []
+		},
+		{
+			"name": "Bets (playerUuid in path)",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Place Bet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stakeAmount\": \"10\",\r\n    \"betValue\": \"5\",\r\n    \"playerUuid\": \"44cb802f-724f-44a2-8283-f2b9877c7ced\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/bets/place-bet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"bets",
+						"place-bet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Winnings Leaderboard",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/v1/player/winnings/leaderboard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"player",
+						"winnings",
+						"leaderboard"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
