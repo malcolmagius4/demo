@@ -3,7 +3,7 @@ package com.example.demo.common.model
 import com.example.demo.common.dto.TransactionDto
 import com.example.demo.common.enum.TransactionType
 import jakarta.persistence.*
-import java.time.Instant
+import java.math.BigDecimal
 
 @Entity
 @Table(name = "transactions")
@@ -12,8 +12,8 @@ data class Transaction(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Column(nullable = false)
-    val amount: Int,
+    @Column(nullable = false, precision = 19, scale = 2)
+    val amount: BigDecimal,
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

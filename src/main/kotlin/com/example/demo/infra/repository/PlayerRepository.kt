@@ -9,4 +9,6 @@ import java.util.*
 interface PlayerRepository : JpaRepository<Player, Long> {
     fun findByPlayerUuid(playerUuid: UUID): Player?
     fun findByUsername(username: String): Player?
+    fun existsPlayerByPlayerUuid(playerUuid: UUID): Boolean
+    fun findTop10ByOrderByTotalWinningsDesc(): List<Player>
 }

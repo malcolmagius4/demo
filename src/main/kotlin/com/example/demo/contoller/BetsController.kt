@@ -14,14 +14,17 @@ import java.util.UUID
 @RequestMapping("/v1/bets")
 class BetsController(val betsService: BetsService) {
 
-//    @PostMapping(value = ["/place-bet"], produces = ["application/json"])
-//    fun placeBet(@Valid @RequestBody requestDto: PlaceBetRequestDto): ResponseEntity<BetDto> {
-//
-//    }
+    @PostMapping(value = ["/place-bet"], produces = ["application/json"])
+    fun placeBet(@Valid @RequestBody requestDto: PlaceBetRequestDto): ResponseEntity<BetDto> {
+        val betResult: BetDto = betsService.placeBet(
+            playerUuid = requestDto.playerUuid, stakeAmount = requestDto.stakeAmount, betValue = requestDto.betValue)
 
-    @GetMapping(value = ["/{playerUuid}"], produces = ["application/json"])
+        return ResponseEntity.ok(betResult)
+    }
+
+    @GetMapping(value = ["/{playerUuid}/details"], produces = ["application/json"])
     fun getBets(@PathVariable(value="playerUuid") playerUuid: UUID) : ResponseEntity<GetBetsResponseDto> {
-        val bets: Set<BetDto> = betsService.getBets(playerUuid).map { b: Bet ->  b.toDto()}.toSet()
+        val bets: List<BetDto> = betsService.getBets(playerUuid).map { b: Bet ->  b.toDto()}
 
         return ResponseEntity.ok(GetBetsResponseDto(bets))
     }

@@ -2,7 +2,7 @@ package com.example.demo.common.model
 
 import com.example.demo.common.dto.BetDto
 import jakarta.persistence.*
-import java.time.Instant
+import java.math.BigDecimal
 
 @Entity
 @Table(name = "bets")
@@ -15,11 +15,11 @@ data class Bet(
     @JoinColumn(name = "player_id", nullable = false)
     val player: Player,
 
-    @Column(nullable = false)
-    val stakeAmount: Int,
+    @Column(nullable = false, precision = 19, scale = 2)
+    val stakeAmount: BigDecimal,
 
-    @Column(nullable = false)
-    val winAmount: Int,
+    @Column(nullable = false, precision = 19, scale = 2)
+    val winAmount: BigDecimal,
 
     @Column(nullable = false)
     val betValue: Int,

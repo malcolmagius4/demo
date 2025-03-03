@@ -1,11 +1,11 @@
 package com.example.demo.infra.repository
 
 import com.example.demo.common.model.Bet
-import com.example.demo.common.model.Player
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 interface BetRepository : JpaRepository<Bet, Long> {
-    fun findByPlayer(player: Player): Set<Bet>
+    fun findByPlayer_PlayerUuid(playerUuid: UUID): List<Bet>
 }

@@ -13,7 +13,7 @@ class ExceptionHandler {
     @ExceptionHandler(BusinessRuntimeException::class)
     fun handleException(exception: BusinessRuntimeException) : ResponseEntity<ErrorDto> {
 
-        return ResponseEntity<ErrorDto>(ErrorDto(errorCode = exception.errorType.errorCode, errorMessage = exception.errorType.errorMessage),
+        return ResponseEntity<ErrorDto>(ErrorDto(errorCode = exception.errorCode.errorCode, errorMessage = exception.errorCode.errorMessage),
             HttpStatus.valueOf(exception.httpStatus))
     }
 

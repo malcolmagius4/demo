@@ -3,10 +3,10 @@ package com.example.demo.service
 import com.example.demo.common.enum.ErrorCode
 import com.example.demo.common.exception.BusinessRuntimeException
 import com.example.demo.common.model.Player
-import com.example.demo.common.model.Transaction
 import com.example.demo.infra.repository.PlayerRepository
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import java.math.BigDecimal
 import java.util.*
 import java.util.Objects.nonNull
 
@@ -24,21 +24,23 @@ class PlayerService(val playerRepository: PlayerRepository) {
         return playerRepository.save(newPlayer)
     }
 
-    fun getPlayerWalletBalance(playerUuid: UUID): Int {
+    fun getPlayerWalletBalance(playerUuid: UUID): BigDecimal {
         val player: Player = getPlayer(playerUuid)
 
         return player.walletBalance
     }
 
-    fun getPlayerTransactions(playerUuid: UUID): Set<Transaction> {
-        val player: Player = getPlayer(playerUuid)
-
-        return player.transactions
-    }
-
     fun getPlayer(playerUuid: UUID): Player {
         return playerRepository.findByPlayerUuid(playerUuid)
             ?: throw BusinessRuntimeException(ErrorCode.PLAYER_UUID_NOT_FOUND, HttpStatus.NOT_FOUND.value())
+    }
+
+    fun playerExists(playerUuid: UUID): Boolean {
+        return playerRepository.existsPlayerByPlayerUuid(playerUuid)
+    }
+
+    fun getWinningsLeaderboard(): List<Player> {
+        return playerRepository.findTop10ByOrderByTotalWinningsDesc()
     }
 
 }
